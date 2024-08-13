@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Books in Stock</title>
+  </head>
+        <body>
+            <h1>Books from BuscaLibre</h1>
+            {{range .BooksFromBuscaLibre}}
+            <div>
+              <h2>{{.Title}}</h2>
+              <p>Author: {{.Author}}</p>
+              <p>Price: {{.Price}}</p>
+              <p>Details: {{.Details}}</p>
+              <p><img src="{{.Img}}" alt="Book Image"></p>
+              <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+            </div>
+            {{end}}
+
+            <h1>Books from Libreria Nacional</h1>
+            {{range .BooksFromLibreriaNacional}}
+            <!-- Similar structure as above -->
+            {{end}}
+
+<!-- Repeat for Tornamesa and Panamericana -->
+        </body>
+</html>

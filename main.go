@@ -3,6 +3,7 @@ package main
 import (
 	"Where_to_buy_a_book/BackendApplication"
 	"net/http"
+	"strconv"
 )
 
 func main() {
@@ -20,7 +21,9 @@ func main() {
 func processForm(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		name := r.FormValue("name")
+		amount := r.FormValue("amount")
+		amountInt, _ := strconv.Atoi(amount)
 
-		BackendApplication.HandleFormData(name)
+		BackendApplication.HandleFormData(w, name, amountInt)
 	}
 }
