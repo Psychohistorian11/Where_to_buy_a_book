@@ -10,7 +10,7 @@ func main() {
 	fs := http.FileServer(http.Dir("./Interface"))
 	http.Handle("/", fs)
 
-	http.HandleFunc("/process", processForm)
+	http.HandleFunc("/Books", processForm)
 
 	// Iniciar el servidor en el puerto 4000 del localhost
 	err := http.ListenAndServe(":4000", nil)

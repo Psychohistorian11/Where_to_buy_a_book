@@ -1,28 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Books in Stock</title>
-  </head>
-        <body>
-            <h1>Books from BuscaLibre</h1>
-            {{range .BooksFromBuscaLibre}}
-            <div>
-              <h2>{{.Title}}</h2>
-              <p>Author: {{.Author}}</p>
-              <p>Price: {{.Price}}</p>
-              <p>Details: {{.Details}}</p>
-              <p><img src="{{.Img}}" alt="Book Image"></p>
-              <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
-            </div>
-            {{end}}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
 
-            <h1>Books from Libreria Nacional</h1>
-            {{range .BooksFromLibreriaNacional}}
-            <!-- Similar structure as above -->
-            {{end}}
+        h1 {
+            text-align: center;
+            color: #333;
+        }
 
-<!-- Repeat for Tornamesa and Panamericana -->
-        </body>
+        .book-section {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .book {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .book:hover {
+            transform: scale(1.05);
+        }
+
+        .book img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .book h2 {
+            font-size: 1.5em;
+            color: #444;
+        }
+
+        .book p {
+            font-size: 1em;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .book a {
+            color: #ff5722;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .book a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Books from BuscaLibre</h1>
+<div class="book-section">
+    {{range .BooksFromBuscaLibre}}
+    <div class="book">
+        <h2>{{.Title}}</h2>
+        <p>Author: {{.Author}}</p>
+        <p>Price: {{.Price}}</p>
+        <p>Details: {{.Details}}</p>
+        <p><img src="{{.Img}}" alt="Book Image"></p>
+        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+    </div>
+    {{end}}
+</div>
+
+<h1>Books from Tornamesa</h1>
+<div class="book-section">
+    {{range .BooksFromTornamesa}}
+    <div class="book">
+        <h2>{{.Title}}</h2>
+        <p>Author: {{.Author}}</p>
+        <p>Price: {{.Price}}</p>
+        <p>Details: {{.Details}}</p>
+        <p><img src="{{.Img}}" alt="Book Image"></p>
+        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+    </div>
+    {{end}}
+</div>
+
+<h1>Books from Libreria Nacional</h1>
+<div class="book-section">
+    {{range .BooksFromLibreriaNacional}}
+    <div class="book">
+        <h2>{{.Title}}</h2>
+        <p>Author: {{.Author}}</p>
+        <p>Price: {{.Price}}</p>
+        <p>Details: {{.Details}}</p>
+        <p><img src="{{.Img}}" alt="Book Image"></p>
+        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+    </div>
+    {{end}}
+</div>
+
+</body>
 </html>
