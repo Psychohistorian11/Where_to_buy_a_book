@@ -9,39 +9,79 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
         h1 {
             text-align: center;
             color: #333;
+            padding: 20px;
+            margin: 0;
         }
 
-        .book-section {
+        .bookstore-section {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+
+        .bookstore {
+            flex: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .buscalibre {
+            background-color: #f96535;
+        }
+
+        .tornamesa {
+            background-color: #c26060;
+        }
+
+        .ediciones-hispanicas {
+            background-color: #0f3f12;
+        }
+
+        .empty-space {
+            background-color: #000000;
+        }
+
+        .future-space {
+            background-color: #ffffff;
+        }
+
+        .logo-container {
+            text-align: center;
+            position: sticky;
+            margin: 0;
+            padding: 0;
+            height: auto;
+
+
+        }
+
+        .logo-container img {
+            width: 200px; /* Aumenta el tamaño del logo */
+            height: auto;
         }
 
         .book {
+            margin-top: 50px; /* Añade espacio adicional en la parte superior del contenido del libro */
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin: 10px;
             padding: 20px;
-            width: 300px;
+            width: 80%;
             text-align: center;
             transition: transform 0.3s;
         }
 
-        .book:hover {
-            transform: scale(1.05);
-        }
-
         .book img {
-            max-width: 100%;
+            width: 200px;
             height: auto;
+            object-fit: cover;
             border-radius: 4px;
         }
 
@@ -65,50 +105,85 @@
         .book a:hover {
             text-decoration: underline;
         }
+
+        .details {
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        .details p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 <body>
-<h1>Books from BuscaLibre</h1>
-<div class="book-section">
-    {{range .BooksFromBuscaLibre}}
-    <div class="book">
-        <h2>{{.Title}}</h2>
-        <p>Author: {{.Author}}</p>
-        <p>Price: {{.Price}}</p>
-        <p>Details: {{.Details}}</p>
-        <p><img src="{{.Img}}" alt="Book Image"></p>
-        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
-    </div>
-    {{end}}
-</div>
+<div class="bookstore-section">
 
-<h1>Books from Tornamesa</h1>
-<div class="book-section">
-    {{range .BooksFromTornamesa}}
-    <div class="book">
-        <h2>{{.Title}}</h2>
-        <p>Author: {{.Author}}</p>
-        <p>Price: {{.Price}}</p>
-        <p>Details: {{.Details}}</p>
-        <p><img src="{{.Img}}" alt="Book Image"></p>
-        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+    <!-- BuscaLibre Section -->
+    <div class="bookstore buscalibre">
+        <div class="logo-container">
+            <img src="Logos/buscalibre1.png" alt="BuscaLibre Logo">
+        </div>
+        {{range .BooksFromBuscaLibre}}
+        <div class="book">
+            <h2>{{.Title}}</h2>
+            <p>Author: {{.Author}}</p>
+            <p>Price: {{.Price}}</p>
+            <div class="details">
+                <p><strong>Details:</strong></p>
+                <p>{{.Details}}</p>
+            </div>
+            <p><img src="{{.Img}}" alt="Book Image"></p>
+            <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+        </div>
+        {{end}}
     </div>
-    {{end}}
-</div>
 
-<h1>Books from Libreria Nacional</h1>
-<div class="book-section">
-    {{range .BooksFromLibreriaNacional}}
-    <div class="book">
-        <h2>{{.Title}}</h2>
-        <p>Author: {{.Author}}</p>
-        <p>Price: {{.Price}}</p>
-        <p>Details: {{.Details}}</p>
-        <p><img src="{{.Img}}" alt="Book Image"></p>
-        <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+    <!-- Tornamesa Section -->
+    <div class="bookstore tornamesa">
+        <div class="logo-container">
+            <img src="Logos/Tornamesa.png" alt="Tornamesa Logo">
+        </div>
+        {{range .BooksFromTornamesa}}
+        <div class="book">
+            <h2>{{.Title}}</h2>
+            <p>Author: {{.Author}}</p>
+            <p>Price: {{.Price}}</p>
+            <div class="details">
+                <p><strong>Details:</strong></p>
+                <p>{{.Details}}</p>
+            </div>
+            <p><img src="{{.Img}}" alt="Book Image"></p>
+            <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+        </div>
+        {{end}}
     </div>
-    {{end}}
-</div>
 
+    <!-- Ediciones Hispánicas Section -->
+    <div class="bookstore ediciones-hispanicas">
+        <div class="logo-container">
+            <img src="Logos/logo-ediciones-hispanicas-1.png" alt="Ediciones Hispánicas Logo">
+        </div>
+        {{range .BooksFromEdicionesHispanicas}}
+        <div class="book">
+            <h2>{{.Title}}</h2>
+            <p>Author: {{.Author}}</p>
+            <p>Price: {{.Price}}</p>
+            <div class="details">
+                <p><strong>Details:</strong></p>
+                <p>{{.Details}}</p>
+            </div>
+            <p><img src="{{.Img}}" alt="Book Image"></p>
+            <p>Link: <a href="{{.Link}}">Comprar aquí</a></p>
+        </div>
+        {{end}}
+    </div>
+
+    <!-- Empty Space -->
+    <div class="bookstore empty-space"></div>
+
+    <!-- Future Space -->
+    <div class="bookstore future-space"></div>
+</div>
 </body>
 </html>

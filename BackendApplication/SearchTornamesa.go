@@ -15,7 +15,7 @@ func SearchTornamesa(nameBook string, maxResults int) []Book {
 		if resultCount < maxResults {
 			link := e.ChildAttr("a", "href")
 			completeLink := "https://www.tornamesa.co/" + link
-			book := SearchInternalFeatures(completeLink)
+			book := SearchInternalFeaturesTO(completeLink)
 			books = append(books, book)
 			resultCount++
 		}
@@ -32,11 +32,7 @@ func SearchTornamesa(nameBook string, maxResults int) []Book {
 
 }
 
-func replaceSpaces(input string) string {
-	return strings.ReplaceAll(input, " ", "+")
-}
-
-func SearchInternalFeatures(link string) Book {
+func SearchInternalFeaturesTO(link string) Book {
 	TO2 := colly.NewCollector()
 	var details string
 	var book Book
