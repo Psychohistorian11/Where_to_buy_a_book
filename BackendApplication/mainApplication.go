@@ -20,6 +20,7 @@ type BooksData struct {
 	BooksFromBuscaLibre          []Book
 	BooksFromEdicionesHispanicas []Book
 	BooksFromTornamesa           []Book
+	BookFromPenguinLibros        []Book
 }
 
 func HandleFormData(w http.ResponseWriter, nameBook string, maxResults int) {
@@ -27,6 +28,7 @@ func HandleFormData(w http.ResponseWriter, nameBook string, maxResults int) {
 		BooksFromBuscaLibre:          SearchBuscaLibre(nameBook, maxResults),
 		BooksFromEdicionesHispanicas: SearchEdicionesHispanicas(nameBook, maxResults),
 		BooksFromTornamesa:           SearchTornamesa(nameBook, maxResults),
+		BookFromPenguinLibros:        SearchPenguinLibros(nameBook, maxResults),
 	}
 
 	renderHTML(w, booksData)
@@ -39,10 +41,14 @@ func HandleFormData(w http.ResponseWriter, nameBook string, maxResults int) {
 	}
 }**/
 
-func searchTornamesa(nameBook string, maxResults int) {}
-
 func replaceSpaces(input string) string {
 	return strings.ReplaceAll(input, " ", "+")
+}
+func replaceSpaces_20(input string) string {
+	input = strings.ReplaceAll(input, " ", "%20")
+	input = strings.ReplaceAll(input, "ñ", "n")
+	input = strings.ReplaceAll(input, "Ñ", "N")
+	return input
 }
 
 func cleanText(text string) string {

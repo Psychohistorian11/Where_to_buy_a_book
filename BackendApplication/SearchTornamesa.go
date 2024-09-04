@@ -22,7 +22,6 @@ func SearchTornamesa(nameBook string, maxResults int) []Book {
 	})
 
 	nameBookWithoutSpaces := replaceSpaces(nameBook)
-
 	err := TO.Visit("https://www.tornamesa.co/busqueda/listaLibros.php?tipoBus=full&palabrasBusqueda=" + nameBookWithoutSpaces)
 	if err != nil {
 		log.Fatalf("Error visiting page: %v", err)
